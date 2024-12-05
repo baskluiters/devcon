@@ -29,7 +29,7 @@
             }
         ],
         "targetArchitecture": "arm",
-        // "preLaunchTask": "Start gdbserver"
+        "preLaunchTask": "Start gdbserver"
         // "logging": {
         //   "engineLogging": true
         // }

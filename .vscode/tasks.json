@@ -7,6 +7,12 @@
             "command": "ssh-keygen -t rsa -b 4096 && ssh-copy-id pi@${config:raspberryPi.host} && ssh pi@${config:raspberryPi.host} \"echo 'Key successfully installed!'\""
         },
         {
+            "label": "Start gdbserver",
+            "type": "shell",
+            "command": "ssh pi@${config:raspberryPi.host} 'pkill gdbserver; nohup gdbserver :2000 /home/pi/myapp > /dev/null 2>&1 &'",
+            "problemMatcher": []
+        },
+        {
             "label": "Build for Raspberry Pi",
             "type": "shell",
             "command": "mkdir -p build-pi && cd build-pi && RASPBERRYPI=1 cmake .. && make",
