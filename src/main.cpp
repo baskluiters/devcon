@@ -1,18 +1,23 @@
-// #include <iostream>
-// #include <chrono>
-// #include <thread>
-
-// int main() {
-//     int counter = 0;
-//     while (true) {
-//         std::cout << "Counter: " << counter++ << std::endl;
-//         std::this_thread::sleep_for(std::chrono::seconds(1));
-//     }
-//     return 0;
-// }
 #include <iostream>
 
+void generateFibonacci(int n) {
+    int a = 0, b = 1, next;
+
+    std::cout << "Fibonacci Series: " << a << ", " << b;
+
+    for (int i = 2; i < n; ++i) {
+        next = a + b;
+        a = b;
+        b = next;
+        std::cout << ", " << next;
+    }
+    std::cout << std::endl;
+}
+
 int main() {
-    std::cout << "Hello from Raspberry Pi!" << std::endl;
+    int n = 10;
+    
+    generateFibonacci(n);
+
     return 0;
 }
