@@ -39,7 +39,7 @@
             }
         },
         {
-            "label": "Build, Deploy, and Run",
+            "label": "Build, Deploy and Run",
             "dependsOn": ["Run on Raspberry Pi"],
             "group": {
                 "kind": "build",
