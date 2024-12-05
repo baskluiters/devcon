@@ -2,20 +2,20 @@
   "version": "0.2.0",
   "configurations": [
       {
-          "name": "Python: Current File",
-          "type": "python",
-          "request": "launch",
-          "program": "${file}",
-          "console": "integratedTerminal"
+        "name": "Python: Current File",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal"
       },
       {
         "name": "Remote Debug Raspberry Pi",
         "type": "cppdbg",
         "request": "launch",
-        "program": "/home/pi/myapp",
+        "program": "${workspaceFolder}/build-pi/myapp",
         "args": [],
         "stopAtEntry": false,
-        "cwd": "${workspaceFolder}", // Change this to a valid directory
+        "cwd": "${workspaceFolder}",
         "environment": [],
         "externalConsole": false,
         "MIMode": "gdb",
@@ -27,7 +27,12 @@
                 "text": "-enable-pretty-printing",
                 "ignoreFailures": true
             }
-        ]
+        ],
+        "targetArchitecture": "arm",
+        // "preLaunchTask": "Start gdbserver"
+        // "logging": {
+        //   "engineLogging": true
+        // }
       }
   ]
 }
