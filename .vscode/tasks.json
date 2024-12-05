@@ -1,0 +1,44 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build for Raspberry Pi",
+            "type": "shell",
+            "command": "mkdir -p build-pi && cd build-pi && RASPBERRYPI=1 cmake .. && make",
+            "group": {
+                // "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Deploy to Raspberry Pi",
+            "type": "shell",
+            "command": "rsync -avz --progress ./build-pi/myapp pi@${config:raspberryPi.host}:~/myapp && ssh pi@${config:raspberryPi.host} 'chmod +x ~/myapp && echo \"Deployment successful! Application is ready to run.\"'",
+            "dependsOn": ["Build for Raspberry Pi"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "Run on Raspberry Pi",
+            "type": "shell",
+            "command": "ssh pi@${config:raspberryPi.host} '~/myapp'",
+            "dependsOn": ["Deploy to Raspberry Pi"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Build, Deploy, and Run",
+            "dependsOn": ["Run on Raspberry Pi"],
+            "group": {
+                "kind": "build",
+                // "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}

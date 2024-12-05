@@ -9,3 +9,6 @@ venv/
 .vscode/*
 !.vscode/launch.json
 !.vscode/tasks.json
+/build-pi/CMakeFiles
+/build-pi
+*.out
