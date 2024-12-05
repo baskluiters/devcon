@@ -1,6 +1,5 @@
 # Use a compatible base image for ARM64
 FROM debian:bullseye-slim
-# FROM mcr.microsoft.com/vscode/devcontainers/cpp:debian-11
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,8 +19,6 @@ RUN apt-get update \
 
 # Install cross-compilation tools for Raspberry Pi
 RUN apt-get update && apt-get install -y \
-    gcc-arm-linux-gnueabihf \
-    g++-arm-linux-gnueabihf \
     gdb-multiarch \
     openssh-client \
     rsync \

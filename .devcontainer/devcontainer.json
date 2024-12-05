@@ -2,9 +2,6 @@
 	"name": "Raspberry Pi Development",
 	"build": {
 			"dockerfile": "Dockerfile",
-			"args": {
-				"VARIANT": "debian-11"
-			},
 			"context": ".."
 	},
 	"customizations": {

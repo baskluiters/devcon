@@ -15,8 +15,7 @@
         "program": "/home/pi/myapp",
         "args": [],
         "stopAtEntry": false,
-        // "cwd": "${workspaceFolder}", // Change this to a valid directory
-        "cwd": "/home/pi",
+        "cwd": "${workspaceFolder}", // Change this to a valid directory
         "environment": [],
         "externalConsole": false,
         "MIMode": "gdb",

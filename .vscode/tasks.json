@@ -2,13 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Set SSH key for Raspberry Pi",
+            "type": "shell",
+            "command": "ssh-keygen -t rsa -b 4096 && ssh-copy-id pi@${config:raspberryPi.host} && ssh pi@${config:raspberryPi.host} \"echo 'Key successfully installed!'\""
+        },
+        {
             "label": "Build for Raspberry Pi",
             "type": "shell",
             "command": "mkdir -p build-pi && cd build-pi && RASPBERRYPI=1 cmake .. && make",
-            "group": {
-                // "kind": "build",
-                "isDefault": true
-            }
         },
         {
             "label": "Deploy to Raspberry Pi",
@@ -36,7 +37,6 @@
             "dependsOn": ["Run on Raspberry Pi"],
             "group": {
                 "kind": "build",
-                // "kind": "test",
                 "isDefault": true
             }
         }
