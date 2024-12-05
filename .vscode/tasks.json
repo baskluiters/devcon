@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Set SSH key for Raspberry Pi",
+            "type": "shell",
+            "command": "ssh-keygen -t rsa -b 4096 && ssh-copy-id pi@${config:raspberryPi.host} && ssh pi@${config:raspberryPi.host} \"echo 'Key successfully installed!'\""
+        },
+        {
+            "label": "Start gdbserver",
+            "type": "shell",
+            "command": "ssh pi@${config:raspberryPi.host} 'pkill gdbserver; nohup gdbserver :2000 /home/pi/myapp > /dev/null 2>&1 &'",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build for Raspberry Pi",
+            "type": "shell",
+            "command": "mkdir -p build-pi && cd build-pi && RASPBERRYPI=1 cmake .. && make",
+        },
+        {
+            "label": "Deploy to Raspberry Pi",
+            "type": "shell",
+            "command": "rsync -avz --progress ./build-pi/myapp pi@${config:raspberryPi.host}:~/myapp && ssh pi@${config:raspberryPi.host} 'chmod +x ~/myapp && echo \"Deployment successful! Application is ready to run.\"'",
+            "dependsOn": ["Build for Raspberry Pi"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "clear": true
+            }
+        },
+        {
+            "label": "Run on Raspberry Pi",
+            "type": "shell",
+            "command": "ssh pi@${config:raspberryPi.host} '~/myapp'",
+            "dependsOn": ["Deploy to Raspberry Pi"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Build, Deploy and Run",
+            "dependsOn": ["Run on Raspberry Pi"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

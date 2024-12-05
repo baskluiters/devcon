@@ -1,0 +1,4 @@
+{
+  "raspberryPi.host": "100.90.31.75",  // Replace with your Pi's IP
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+}

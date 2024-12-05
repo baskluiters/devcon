@@ -17,6 +17,16 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Install cross-compilation tools for Raspberry Pi
+RUN apt-get update && apt-get install -y \
+    gdb-multiarch \
+    openssh-client \
+    rsync \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install CMake
+RUN apt-get update && apt-get install -y cmake
+
 # Create a non-root user
 ARG USERNAME=vscode
 ARG USER_UID=1000

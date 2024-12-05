@@ -2,11 +2,37 @@
   "version": "0.2.0",
   "configurations": [
       {
-          "name": "Python: Current File",
-          "type": "python",
-          "request": "launch",
-          "program": "${file}",
-          "console": "integratedTerminal"
+        "name": "Remote Debug Raspberry Pi",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build-pi/myapp",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb-multiarch",
+        "miDebuggerServerAddress": "${config:raspberryPi.host}:2000",
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }
+        ],
+        "targetArchitecture": "arm",
+        "preLaunchTask": "Start gdbserver"
+        // "logging": {
+        //   "engineLogging": true
+        // }
+      },
+      {
+        "name": "Python: Current File",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal"
       }
   ]
 }
