@@ -1,6 +1,6 @@
 # devcon
 
-A demo on the usage of Development Containers in VS Code
+A demo on the usage of Development Containers in VS Code using Python
 
 Getting started:
 
