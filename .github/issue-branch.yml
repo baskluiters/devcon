@@ -1,4 +1,0 @@
-mode: chatops
-autoCloseIssue: true
-defaultBranch: 'develop'
-gitSafeReplacementChar: '-'
